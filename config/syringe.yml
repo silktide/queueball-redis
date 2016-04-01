@@ -3,6 +3,7 @@ parameters:
     redis.host: "localhost"
     redis.port: 6379
 
+    defaultQueue: null
 
 services:
     redisClient:
@@ -14,9 +15,11 @@ services:
                 port: "%redis.port%"
 
     redisQueue:
-        class:
+        class: Silktide\Queueball\Redis\Queue
         arguments:
             - "@redisClient"
+            - "@silktide_queueball.messageFactory"
+            - "%defaultQueue%"
 
     # set the sqs queue to be default
     silktide_queueball.defaultQueue:
