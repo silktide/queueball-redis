@@ -1,0 +1,24 @@
+parameters:
+    redis.scheme: "tcp"
+    redis.host: "localhost"
+    redis.port: 6379
+
+
+services:
+    redisClient:
+        class: Predis\Client
+        arguments:
+            -
+                scheme: "%redis.scheme%"
+                host: "%redis.host%"
+                port: "%redis.port%"
+
+    redisQueue:
+        class:
+        arguments:
+            - "@redisClient"
+
+    # set the sqs queue to be default
+    silktide_queueball.defaultQueue:
+        aliasOf: "@redisQueue"
+

@@ -1,0 +1,28 @@
+{
+  "name": "silktide/queueball-redis",
+  "description": "A module for Silktide QueueBall, the message queue abstraction system, using Redis lists as queues",
+  "license": "MIT",
+  "homepage": "https://github.com/silktide/queueball-redis",
+  "require": {
+    "php": ">=5.4.0",
+    "predis/predis": "^1.0",
+    "silktide/queueball": "^2.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "mockery/mockery": "0.9.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Silktide\\QueueBall\\Redis\\": "src",
+      "Silktide\\QueueBall\\Redis\\Test\\": "test"
+    }
+  },
+  "extra": {
+    "downsider-puzzle-di": {
+      "silktide/syringe": {
+        "path": "config/syringe.yml"
+      }
+    }
+  }
+}
