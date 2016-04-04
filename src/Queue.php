@@ -58,6 +58,9 @@ class Queue extends AbstractQueue
     public function receiveMessage($queueId = null, $waitTime = 0)
     {
         $queueId = $this->normaliseQueueId($queueId);
+        if (empty($waitTime)) {
+            $waitTime = $this->waitTime;
+        }
         $message = $this->predis->blpop([$queueId], $waitTime);
         if (empty($message[1])) {
             return null;
