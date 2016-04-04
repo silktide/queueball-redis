@@ -15,7 +15,7 @@ services:
                 port: "%redis.port%"
 
     redisQueue:
-        class: Silktide\Queueball\Redis\Queue
+        class: Silktide\QueueBall\Redis\Queue
         arguments:
             - "@redisClient"
             - "@silktide_queueball.messageFactory"
