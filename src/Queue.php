@@ -59,9 +59,12 @@ class Queue extends AbstractQueue
     {
         $queueId = $this->normaliseQueueId($queueId);
         $message = $this->predis->blpop([$queueId], $waitTime);
+        if (empty($message[1])) {
+            return null;
+        }
 
         /** @var QueueMessage $queueMessage */
-        $queueMessage = $this->messageFactory->createMessage($message, $queueId);
+        $queueMessage = $this->messageFactory->createMessage($message[1], $queueId);
         
         $index = $this->receivedMessageCounter++;
         $this->receivedMessages[$index] = $queueMessage;
