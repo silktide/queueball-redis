@@ -1,4 +1,6 @@
 ---
+app: queueball-redis
 type: library
 source: open
+language: php
 ...
